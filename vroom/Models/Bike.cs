@@ -29,6 +29,7 @@ namespace vroom.Models
         public string Features { get; set; }
         [Required(ErrorMessage ="Provide Seller Name")]
         public string SellerName { get; set; }
+        [EmailAddress]
         public string SellerEmail { get; set; }
         [Required(ErrorMessage = "Provide Seller Phone")]
         public string SellerPhone { get; set; }

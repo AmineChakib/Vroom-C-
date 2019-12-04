@@ -10,9 +10,12 @@ using vroom.Models.ViewModels;
 using System.IO;
 using Microsoft.AspNetCore.Hosting.Internal;
 using cloudscribe.Pagination.Models;
+using Microsoft.AspNetCore.Authorization;
+using vroom.Helpers;
 
 namespace vroom.Controllers
 {
+    [Authorize(Roles = Roles.Admin + "," + Roles.Executive)]
     public class BikeController : Controller
     {
         private readonly VroomDbContext _db;
@@ -38,7 +41,7 @@ namespace vroom.Controllers
             return View(Bikes.ToList());
         }
 
-        public IActionResult Index(int pageNumber=1,int pageSize=2)
+        public IActionResult Index(int pageNumber=1,int pageSize=3)
         {
             int ExcludeRecords = (pageNumber * pageSize) - pageSize;
             var Bikes = _db.Bikes.Include(m => m.Make).Include(m => m.Model)

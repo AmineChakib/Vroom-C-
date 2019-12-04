@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<vroom.Models.Model>
+@using vroom.Helpers
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,9 +11,10 @@
     <div class="col-6">
         <h2 class="text-info">Models of Vehicle</h2>
     </div>
+    @if (User.IsInRole(Roles.Admin)) { 
     <div class="col-6 text-right">
         <a class="btn btn-info" asp-action="Create"><i class="fa fa-motorcycle"></i> &nbsp;Add New Model</a>
-    </div>
+    </div>}
     <br />
     <div class="col-12">
         <table class="table table-striped border">

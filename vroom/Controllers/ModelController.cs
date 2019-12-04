@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using vroom.AppDbContext;
+using vroom.Helpers;
 using vroom.Models;
 using vroom.Models.ViewModels;
 
 namespace vroom.Controllers
 {
+    [Authorize(Roles = Roles.Admin+","+Roles.Executive)]
     public class ModelController : Controller
     {
         private readonly VroomDbContext _db;
